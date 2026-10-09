@@ -35,8 +35,6 @@ let { strength = 1 }: { strength?: number } = $props()
     height: 200%;
     opacity: calc(0.11 * var(--strength));
     mix-blend-mode: overlay;
-    will-change: transform;
-    animation: grain 0.9s steps(6) infinite;
   }
 
   .scanlines {
@@ -46,26 +44,6 @@ let { strength = 1 }: { strength?: number } = $props()
     mix-blend-mode: multiply;
   }
 
-  @keyframes grain {
-    0% {
-      transform: translate(0, 0);
-    }
-    20% {
-      transform: translate(-7%, 4%);
-    }
-    40% {
-      transform: translate(5%, -6%);
-    }
-    60% {
-      transform: translate(-4%, -3%);
-    }
-    80% {
-      transform: translate(6%, 5%);
-    }
-    100% {
-      transform: translate(-2%, 7%);
-    }
-  }
 
   @media (prefers-reduced-motion: reduce) {
     .grain {

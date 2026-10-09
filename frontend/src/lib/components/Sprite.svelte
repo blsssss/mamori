@@ -56,7 +56,6 @@ $effect(() => {
 
   .breath {
     transform-origin: 50% 100%;
-    animation: breathe 4.6s ease-in-out infinite;
   }
 
   img {
@@ -78,15 +77,6 @@ $effect(() => {
     animation: none;
   }
 
-  @keyframes breathe {
-    0%,
-    100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.005);
-    }
-  }
 
   @keyframes enter {
     from {

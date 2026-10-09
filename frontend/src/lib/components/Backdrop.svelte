@@ -64,9 +64,7 @@ $effect(() => {
   }
 
   .layer.drift {
-    animation:
-      fade-in 0.9s ease both,
-      drift 48s ease-in-out infinite alternate;
+    animation: fade-in 0.9s ease both;
   }
 
   @keyframes fade-in {
@@ -78,14 +76,6 @@ $effect(() => {
     }
   }
 
-  @keyframes drift {
-    from {
-      transform: scale(1.02) translate(0, 0);
-    }
-    to {
-      transform: scale(1.06) translate(-1.2%, -0.8%);
-    }
-  }
 
   @media (prefers-reduced-motion: reduce) {
     .layer,
