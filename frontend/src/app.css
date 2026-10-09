@@ -1,0 +1,66 @@
+:root {
+  --ink: #141012;
+  --paper: #efe6d8;
+  --pass: #2f6b3a;
+  --warn: #8a5a00;
+  --fail: #9e1b1b;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+}
+
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 16px 24px 40px;
+}
+
+h1 {
+  margin: 0;
+}
+
+section {
+  margin-top: 24px;
+}
+
+h2 {
+  font-size: 1.05rem;
+  margin: 0 0 8px;
+}
+
+ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+
+small {
+  opacity: 0.75;
+}
+
+.bar {
+  display: flex;
+  gap: 8px;
+}
+
+.verdict.pass,
+li.pass code {
+  color: var(--pass);
+}
+
+.verdict.warn,
+li.warn code {
+  color: var(--warn);
+}
+
+.verdict.fail,
+.verdict.error,
+li.fail code,
+li.error code,
+.error {
+  color: var(--fail);
+}
