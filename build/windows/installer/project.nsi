@@ -48,24 +48,55 @@ VIAddVersionKey "ProductName"     "${INFO_PRODUCTNAME}"
 # Enable HiDPI support. https://nsis.sourceforge.io/Reference/ManifestDPIAware
 ManifestDPIAware true
 
-!include "MUI.nsh"
+!include "MUI2.nsh"
 
 !define MUI_ICON "..\icon.ico"
 !define MUI_UNICON "..\icon.ico"
-# !define MUI_WELCOMEFINISHPAGE_BITMAP "resources\leftimage.bmp" #Include this to add a bitmap on the left side of the Welcome Page. Must be a size of 164x314
+!define MUI_WELCOMEFINISHPAGE_BITMAP "welcome.bmp" # 164x314, the finish page swaps in finish.bmp
+!define MUI_HEADERIMAGE
+!define MUI_HEADERIMAGE_RIGHT
+!define MUI_HEADERIMAGE_BITMAP "header.bmp" # 150x57
+!define MUI_HEADERIMAGE_UNBITMAP "header.bmp"
 !define MUI_FINISHPAGE_NOAUTOCLOSE # Wait on the INSTFILES page so the user can take a look into the details of the installation steps
 !define MUI_ABORTWARNING # This will warn the user if they exit from the installer.
 
-!insertmacro MUI_PAGE_WELCOME # Welcome to the installer page.
-# !insertmacro MUI_PAGE_LICENSE "resources\eula.txt" # Adds a EULA page to the installer
-!insertmacro MUI_PAGE_DIRECTORY # In which folder install page.
-!insertmacro MUI_PAGE_INSTFILES # Installing page.
-!insertmacro MUI_PAGE_FINISH # Finished installation page.
+!define MUI_WELCOMEPAGE_TITLE "$(WelcomeTitle)"
+!define MUI_WELCOMEPAGE_TEXT "$(WelcomeText)"
+!insertmacro MUI_PAGE_WELCOME
+!insertmacro MUI_PAGE_DIRECTORY
+!insertmacro MUI_PAGE_INSTFILES
+!define MUI_FINISHPAGE_TITLE "$(FinishTitle)"
+!define MUI_FINISHPAGE_TEXT "$(FinishText)"
+!define MUI_FINISHPAGE_RUN "$INSTDIR\${PRODUCT_EXECUTABLE}"
+!define MUI_PAGE_CUSTOMFUNCTION_SHOW FinishShow
+!insertmacro MUI_PAGE_FINISH
 
-!insertmacro MUI_UNPAGE_INSTFILES # Uinstalling page
+!insertmacro MUI_UNPAGE_CONFIRM
+!insertmacro MUI_UNPAGE_INSTFILES
 
-!insertmacro MUI_LANGUAGE "English" # Set the Language of the installer
+!insertmacro MUI_LANGUAGE "English"
 !insertmacro MUI_LANGUAGE "Russian"
+
+LangString WelcomeTitle ${LANG_ENGLISH} "mamori ${INFO_PRODUCTVERSION}"
+LangString WelcomeTitle ${LANG_RUSSIAN} "mamori ${INFO_PRODUCTVERSION}"
+LangString WelcomeText ${LANG_ENGLISH} "mamori checks that the antivirus and the firewall on this computer actually work: the internet connection, the installed protection, a firewall rule test, and antivirus tests with the EICAR file and AMSI.$$
+$$
+A Touhou Project fan work. Touhou Project belongs to Team Shanghai Alice."
+LangString WelcomeText ${LANG_RUSSIAN} "mamori проверяет, что антивирус и межсетевой экран на этом компьютере действительно работают: подключение к интернету, установленные средства защиты, проверка межсетевого экрана правилом блокировки, проверка антивируса файлом EICAR и через AMSI.$$
+$$
+Фанатская работа по Touhou Project. Touhou Project принадлежит Team Shanghai Alice."
+LangString FinishTitle ${LANG_ENGLISH} "The barrier is up"
+LangString FinishTitle ${LANG_RUSSIAN} "Барьер поднят"
+LangString FinishText ${LANG_ENGLISH} "mamori is installed. Some antiviruses show a notification during the antivirus check: that is the harmless EICAR test file doing its job."
+LangString FinishText ${LANG_RUSSIAN} "mamori установлена. Во время проверки антивируса некоторые антивирусы показывают уведомление: так срабатывает безвредный тестовый файл EICAR."
+
+# MUI2 has one bitmap for both pages, so the finish page replaces it when it is shown
+Function FinishShow
+    InitPluginsDir
+    File "/oname=$PLUGINSDIR\finish.bmp" "finish.bmp"
+    ${NSD_FreeImage} $mui.FinishPage.Image.Bitmap
+    ${NSD_SetImage} $mui.FinishPage.Image "$PLUGINSDIR\finish.bmp" $mui.FinishPage.Image.Bitmap
+FunctionEnd
 
 ## The following two statements can be used to sign the installer and the uninstaller. The path to the binaries are provided in %1
 #!uninstfinalize 'signtool --file "%1"'
