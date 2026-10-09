@@ -1,0 +1,32 @@
+# working notes, never committed
+.dev/
+*.local.md
+*.notes.md
+
+# go
+/bin/
+*.test
+*.out
+coverage.html
+coverage.txt
+go.work
+go.work.sum
+
+# wails
+build/bin/
+*.syso
+frontend/dist/*
+!frontend/dist/.gitkeep
+frontend/package.json.md5
+
+# node
+node_modules/
+frontend/.svelte-kit/
+*.tsbuildinfo
+
+# editors and os
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
