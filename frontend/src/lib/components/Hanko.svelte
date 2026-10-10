@@ -1,0 +1,53 @@
+<!-- the mamori logo: a flat hanko seal with 守, the same mark as the app icon (docs/img/logo.svg).
+     The print texture is a rough edge and paper flecks, never a glow or a gradient -->
+<script lang="ts">
+let { size = '1em' }: { size?: string } = $props()
+const id = $props.id()
+</script>
+
+<svg
+  class="hanko"
+  viewBox="14 14 212 212"
+  style:width={size}
+  style:height={size}
+  aria-hidden="true"
+  focusable="false"
+>
+  <filter id="{id}-print" x="-4%" y="-4%" width="108%" height="108%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.07" numOctaves="3" seed="5" result="warp" />
+    <feDisplacementMap in="SourceGraphic" in2="warp" scale="5" xChannelSelector="R" yChannelSelector="G" result="stamp" />
+    <feTurbulence type="fractalNoise" baseFrequency="0.22" numOctaves="2" seed="17" result="grain" />
+    <!-- only the peaks of the noise survive: thin spots where the paper shows through the ink -->
+    <feColorMatrix
+      in="grain"
+      type="matrix"
+      values="0 0 0 0 0.937  0 0 0 0 0.902  0 0 0 0 0.847  0 0 0 3.5 -2.3"
+      result="flecks"
+    />
+    <feComposite in="flecks" in2="stamp" operator="atop" />
+  </filter>
+  <g filter="url(#{id}-print)">
+    <rect class="field" x="14" y="14" width="212" height="212" rx="17" />
+    <path
+      class="glyph"
+      transform="translate(27.20 190.29) scale(0.18523 -0.18523)"
+      d="M530 -74Q522 -27 510.5 -1.5Q499 24 476.5 36.5Q454 49 412 55Q409 60 409 65Q409 72 414 75H549Q578 75 578 104V397H170Q170 397 154.0 397.0Q138 397 113.0 396.0Q88 395 62 392L50 436Q100 430 135.0 429.0Q170 428 170 428H578V508Q578 544 575.0 565.0Q572 586 568 595Q565 603 568 607Q570 613 579 613Q593 613 622.5 609.0Q652 605 681.5 601.0Q711 597 724 593Q736 590 736 578Q736 561 720 559Q697 557 697 538V428H757Q766 428 771.5 429.5Q777 431 782 438L824 498Q830 506 838 506Q842 506 848 503Q862 495 882.0 479.5Q902 464 920.5 448.0Q939 432 947 423Q952 416 952 411Q952 397 940 397H697V314Q697 289 698.0 251.5Q699 214 700.0 177.0Q701 140 702.0 113.0Q703 86 703 80Q703 17 664.0 -21.5Q625 -60 530 -74ZM116 486Q82 486 66.0 508.5Q50 531 50 556Q50 575 57.5 591.5Q65 608 79 616Q117 640 138.0 667.5Q159 695 162 749Q166 756 174 756Q179 756 182 753Q201 714 208 679H437V761Q437 803 429 814Q426 822 428 827Q432 833 439 833Q450 833 471.0 831.0Q492 829 516.0 826.5Q540 824 560.5 821.0Q581 818 591 816Q603 812 603 800Q603 784 587 782Q576 781 572.0 776.0Q568 771 568 760V679H745Q753 679 756.0 680.0Q759 681 763 688Q767 695 773.0 706.5Q779 718 783 724Q789 734 796 734Q800 734 818.0 724.5Q836 715 860.0 700.5Q884 686 906.5 671.5Q929 657 942 646Q948 642 950.5 634.0Q953 626 950 619Q948 613 942.0 608.5Q936 604 925 605Q915 605 904.5 605.0Q894 605 883 603Q854 599 822.0 581.5Q790 564 751 525H747Q736 525 734 536Q736 546 740.5 567.5Q745 589 749.5 612.5Q754 636 756 648H212Q213 642 213.0 635.5Q213 629 213 623Q213 565 186.5 525.5Q160 486 116 486ZM348 146Q332 146 319.0 155.0Q306 164 302 183Q290 242 269.0 286.5Q248 331 202 362Q202 364 201.5 364.5Q201 365 201 366Q201 377 212 380Q304 372 359.5 337.0Q415 302 421 240Q425 195 400.0 170.5Q375 146 348 146Z"
+    />
+  </g>
+</svg>
+
+<style>
+  .hanko {
+    display: block;
+    flex: none;
+    overflow: visible;
+  }
+
+  .field {
+    fill: var(--vermilion);
+  }
+
+  .glyph {
+    fill: var(--paper);
+  }
+</style>
