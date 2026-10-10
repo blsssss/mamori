@@ -14,6 +14,13 @@ updates:
     groups:
       frontend:
         patterns: ["*"]
+    ignore:
+      # svelte-check runs on typescript 6, version 7 needs both side by side and a flag
+      - dependency-name: typescript
+        update-types: ["version-update:semver-major"]
+      # the types follow the node major that ci and the wails build use
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: github-actions
     directory: /
     schedule:
