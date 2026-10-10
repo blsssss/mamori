@@ -79,12 +79,8 @@ ManifestDPIAware true
 
 LangString WelcomeTitle ${LANG_ENGLISH} "mamori ${INFO_PRODUCTVERSION}"
 LangString WelcomeTitle ${LANG_RUSSIAN} "mamori ${INFO_PRODUCTVERSION}"
-LangString WelcomeText ${LANG_ENGLISH} "mamori checks that the antivirus and the firewall on this computer actually work: the internet connection, the installed protection, a firewall rule test, and antivirus tests with the EICAR file and AMSI.$$
-$$
-A Touhou Project fan work. Touhou Project belongs to Team Shanghai Alice."
-LangString WelcomeText ${LANG_RUSSIAN} "mamori проверяет, что антивирус и межсетевой экран на этом компьютере действительно работают: подключение к интернету, установленные средства защиты, проверка межсетевого экрана правилом блокировки, проверка антивируса файлом EICAR и через AMSI.$$
-$$
-Фанатская работа по Touhou Project. Touhou Project принадлежит Team Shanghai Alice."
+LangString WelcomeText ${LANG_ENGLISH} "mamori checks that the antivirus and the firewall on this computer actually work: the internet connection, the installed protection, a firewall rule test, and antivirus tests with the EICAR file and AMSI.$\r$\n$\r$\nA Touhou Project fan work. Touhou Project belongs to Team Shanghai Alice."
+LangString WelcomeText ${LANG_RUSSIAN} "mamori проверяет, что антивирус и межсетевой экран на этом компьютере действительно работают: подключение к интернету, установленные средства защиты, проверка межсетевого экрана правилом блокировки, проверка антивируса файлом EICAR и через AMSI.$\r$\n$\r$\nФанатская работа по Touhou Project. Touhou Project принадлежит Team Shanghai Alice."
 LangString FinishTitle ${LANG_ENGLISH} "The barrier is up"
 LangString FinishTitle ${LANG_RUSSIAN} "Барьер поднят"
 LangString FinishText ${LANG_ENGLISH} "mamori is installed. Some antiviruses show a notification during the antivirus check: that is the harmless EICAR test file doing its job."
